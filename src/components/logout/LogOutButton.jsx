@@ -1,15 +1,13 @@
 'use client'
 import React from 'react'
 import { Button } from "@/components/ui/button"
-import { signOut } from 'next-auth/react';
+import { deleteCookie } from 'cookies-next';
 
 const LogOutButton = () => {
-  const handleLogOut = () => {
-    signOut({
-      redirect: true,
-      callbackUrl: `${window.location.origin}/login` ?? '',
-    });
-
+  const handleLogOut = async () => {
+    await deleteCookie('access_token');
+    await deleteCookie('refresh_token');
+    window.location.reload();
   };
 
   return (

@@ -1,9 +1,11 @@
 import React from "react";
-import {
+import { CircleUserRound, Tv2,
   Loader2,
 } from "lucide-react";
 
 export const Icons = {
+  kiosK: Tv2,
+  agent: CircleUserRound,
   spinner: Loader2,
   gitHub: ({ ...props }) => (
     <svg

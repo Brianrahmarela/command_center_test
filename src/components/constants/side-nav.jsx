@@ -1,69 +1,70 @@
-import { LayoutDashboard, ListTodo, Users } from "lucide-react";
+import { KanbanSquare, Settings, Settings2, Anvil, ListMinus } from "lucide-react";
 
 export const NavItems = [
     {
         title: "Dashboard",
-        icon: LayoutDashboard,
+        icon: KanbanSquare,
         href: "/dashboard",
-        color: "text-sky-500",
+        // color: "text-black",
     },
     {
-        title: "Users",
-        icon: Users,
-        href: "/dashboard/users",
-        color: "text-green-500",
+        title: "Master",
+        icon: Anvil,
+        href: "/dashboard/master",
+        // color: "text-black",
+        // color: "text-green-500",
         
     },
-    {
-        title: "TodoList",
-        icon: ListTodo,
-        href: "/dashboard/todolist",
-        color: "text-orange-500",
-        isChidren: true,
-        children: [
-            {
-                title: "children1",
-                icon: ListTodo,
-                color: "text-pink-500",
-                href: "/dashboard/todolist/children1",
-            },
-            {
-                title: "children2",
-                icon: ListTodo,
-                color: "text-pink-500",
-                href: "/dashboard/todolist/children2",
-            },
-            {
-                title: "children3",
-                icon: ListTodo,
-                color: "text-pink-500",
-                href: "/dashboard/todolist/children3",
-            },
-        ],
-    },
+    // {
+    //     title: "TodoList",
+    //     icon: ListTodo,
+    //     href: "/dashboard/todolist",
+    //     color: "text-orange-500",
+    //     isChidren: true,
+    //     children: [
+    //         {
+    //             title: "children1",
+    //             icon: ListTodo,
+    //             color: "text-pink-500",
+    //             href: "/dashboard/todolist/children1",
+    //         },
+    //         {
+    //             title: "children2",
+    //             icon: ListTodo,
+    //             color: "text-pink-500",
+    //             href: "/dashboard/todolist/children2",
+    //         },
+    //         {
+    //             title: "children3",
+    //             icon: ListTodo,
+    //             color: "text-pink-500",
+    //             href: "/dashboard/todolist/children3",
+    //         },
+    //     ],
+    // },
     {
         title: "Settings",
-        icon: ListTodo,
+        icon: Settings2,
         href: "/dashboard/settings",
-        color: "text-orange-500",
+        // color: "text-black",
         isChidren: true,
         children: [
             {
                 title: "children1",
-                icon: ListTodo,
-                color: "text-pink-500",
+                icon: ListMinus,
+                // color: "text-black",
                 href: "/dashboard/settings/children1",
             },
             {
                 title: "children2",
-                icon: ListTodo,
-                color: "text-pink-500",
+                icon: ListMinus,
+                // color: "text-black",
                 href: "/dashboard/settings/children2",
             },
             {
                 title: "children3",
-                icon: ListTodo,
-                color: "text-pink-500",
+                icon: ListMinus,
+                // color: "text-black",
                 href: "/dashboard/settings/children3",
             },
         ],

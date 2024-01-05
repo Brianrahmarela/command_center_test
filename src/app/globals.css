@@ -72,5 +72,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: linear-gradient(180deg, #fdfbfb 0%, #d7e3f2 100%);  
+    /* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);   */
   }
 }

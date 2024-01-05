@@ -17,6 +17,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { API } from "@/config";
+import { setCookie } from "cookies-next";
 
 const formSchema = z.object({
 	email: z.string().email(),
@@ -49,7 +51,7 @@ export default function FormLogin() {
 			form.setValue("password", String(decryptedDataPassword));
 		}
 	}, [])
-	
+
 	const onSubmit = async (values) => {
 		setIsLoading(true)
 		if(values.remember_me){
@@ -60,23 +62,21 @@ export default function FormLogin() {
 		} else {
 			Cookies.remove('email') 
 			Cookies.remove('password')
-		}
-		// console.log('values', values)
-		const signInData = await signIn("credentials", {
-			email: values.email,
-			password: values.password,
-      		redirect: false,
-		});
+		}	
 
-		// console.log('signInData', signInData)
-		if (signInData?.ok) {
-			// console.log('msk if')
-			// router.push("/menu");
-			window.location.reload()
-		} else {
-			// console.log('msk else')
-			showToast(signInData?.error);
-			setIsLoading(false)
+		const response = await API.POST('/auth', values);
+		console.log('response /login', response)
+		console.log('===> exp acces_token', response.data.content[0]?.expired_access_token_string)
+
+		if (response.meta.code === 200) {
+			await setCookie('access_token', response.data.content[0].access_token, {
+			  maxAge: response.data.content[0].expired_access_token,
+			});
+			await setCookie('refresh_token', response.data.content[0].refresh_token);
+			window.location.reload();
+		  } else {
+			showToast(response.meta.message);
+			setIsLoading(false)		  
 		}
 	};
 	const showToast = (msgErr) => {

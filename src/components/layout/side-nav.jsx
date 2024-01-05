@@ -43,19 +43,27 @@ export function SideNav({ items, setOpen, className }) {
               <AccordionTrigger
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
-                  "group relative flex h-12 justify-between px-4 py-2 text-base duration-200 hover:bg-muted hover:no-underline"
+                  "group relative flex h-12 justify-between px-4 py-2 text-base duration-200 hover:font-bold hover:bg-white  hover:no-underline"
                 )}
+
+                
               >
                 <div>
                   {item.icon && (
-                    <item.icon className={cn("h-5 w-5", item.color)} />
+                    <item.icon className={cn("h-5 w-5",  path === item.href ?"group-hover:text-white" : item.color)} />
                   )}
                 </div>
                 <div
+                  // className={cn(
+                  //   "absolute left-12 text-base group-hover:font-bold duration-200 ${ path === item.href && 'group-hover:text-white ",
+                  //   !isOpen && className
+                  // )}
+
                   className={cn(
-                    "absolute left-12 text-base duration-200",
+                    `absolute left-12 text-base group-hover:font-bold duration-200 ${ path === item.href && 'group-hover:text-white '}`,
                     !isOpen && className
                   )}
+                  
                 >
                   {item.title}
                 </div>
@@ -74,19 +82,23 @@ export function SideNav({ items, setOpen, className }) {
                     }}
                     className={cn(
                       buttonVariants({ variant: "ghost" }),
-                      "group flex h-12 justify-start gap-x-3",
-                      path === child.href && "bg-muted font-bold hover:bg-muted"
+                      "group flex h-12 justify-start gap-x-3 group-hover:text-primary hover:bg-white ",
+                      path === child.href && "bg-primary text-white font-bold hover:bg-primary hover:text-white"
                     )}
+         
                   >
                     {child.icon && (
-                      <child.icon className={cn("h-5 w-5", child.color)} />
+                      <child.icon className={cn("h-5 w-5",  path === child.href ?"group-hover:text-white" : child.color)} />
                     )}
+                  
                     <div
                       className={cn(
-                        "text-base duration-200",
+                        `text-base group-hover:font-bold duration-200 ${ path === child.href && 'group-hover:text-white '}`,
                         !isOpen && className
                       )}
+                     
                     >
+                   
                       {child.title}
                     </div>
                   </Link>
@@ -103,14 +115,17 @@ export function SideNav({ items, setOpen, className }) {
             }}
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              "group relative flex h-12 justify-start",
-              path === item.href && "bg-muted font-bold hover:bg-muted"
+              "group relative flex h-12 justify-start group-hover:text-primary hover:bg-white ",
+              path === item.href && "bg-primary text-white font-bold hover:bg-primary hover:text-white"
+              
             )}
+          
           >
-            {item.icon && <item.icon className={cn("h-5 w-5", item.color)} />}
+            
+            {item.icon && <item.icon className={cn("h-5 w-5", path === item.href ?"group-hover:text-white" : item.color)} />}
             <span
               className={cn(
-                "absolute left-12 text-base duration-200",
+                `absolute left-12 text-base group-hover:font-bold duration-200 ${ path === item.href && 'group-hover:text-white '}`,
                 !isOpen && className
               )}
             >

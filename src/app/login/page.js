@@ -1,6 +1,4 @@
 import React from "react";
-import useAuthSession from "@/lib/useAuthSession";
-import { redirect } from "next/navigation";
 import FormLogin from "@/components/login/form-login";
 import {
 	Card,
@@ -12,17 +10,13 @@ import {
 } from "@/components/ui/card";
 
 const Login = async () => {
-	const user = await useAuthSession();
-	if (user) {
-		// console.log('msk page login', user)
-		redirect("/menu");
-	}
+
 	return (
-		<div className=" flex flex-col justify-center  items-center h-screen">
+		<div className=" flex flex-col justify-center  items-center h-screen" >
 			<h4 className="mb-6 scroll-m-20 text-xl font-semibold tracking-tight">
 				Fastmart Command Center
 			</h4>
-			<Card className="max-w-md w-full shadow-lg">
+			<Card className="max-w-md w-full shadow-lg p-4 rounded-lg" >
 				<CardHeader>
 					<CardTitle className="font-bold">Login</CardTitle>
 				</CardHeader>
