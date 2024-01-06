@@ -31,15 +31,17 @@ const RefreshToken = () => {
         }
 
         const user = await response.json();
-
-        await setCookie('access_token', user.data.content[0]?.access_token);
-        await setCookie('refresh_token', user.data.content[0]?.refresh_token);
-        await customRevalidatePath('/:path*');
-        console.log('refresh token', user);
+        if (user.meta.message !== 'success') {
+          deleteCookie('access_token');
+          deleteCookie('refresh_token');
+          window.location.reload();
+        } else {
+          await setCookie('access_token', user.data.content[0]?.access_token);
+          await setCookie('refresh_token', user.data.content[0]?.refresh_token);
+          await customRevalidatePath('/:path*');
+        }
       } catch (error) {
-        deleteCookie('access_token');
-        deleteCookie('refresh_token');
-        window.location.reload();
+        console.log(error);
       }
     };
     fetchData();
