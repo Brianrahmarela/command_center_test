@@ -6,7 +6,7 @@ export const customRevalidateTag = (tag) => {
     revalidateTag(tag)
 }
 export const customRevalidatePath = (path) => {
-    console.log('path customRevalidatePath', path)
+    // console.log('path customRevalidatePath', path)
     revalidatePath(path)
 }
 

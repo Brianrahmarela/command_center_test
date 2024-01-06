@@ -6,33 +6,22 @@ import { Icons } from "@/components/ui/icons";
 import Link from "next/link";
 import RefreshToken from "@/config/refreshToken";
 import { cookies } from "next/headers";
-// import { redirect } from "next/navigation";
-const getProfile = async (token) => {
-  const response = await API.GET("/me", token);
-  // console.log('response get/me', response)
-  return response
-  // const res = response.json()
-  // console.log('res'), res
 
-  // if (response.meta.message === "success") {
-  //   return response;
-  // } else {
-  //   console.log('err response', response.meta.message)
-  //   // throw new Error(response.meta.message);
-    
-  // }
-};
 
 
 const Menu = async () => {
   const cookie = cookies()
-  const token = cookie.get('access_token')?.value
-  console.log('token in menu', token)
-  const data = await getProfile(token ?? '')
-  console.log('data get profile', data)
+  const token = await cookie.get('access_token')?.value
+  // console.log('token in menu', token)
+  const getProfile = async (token) => {
+    const response = await API.GET("/me", token);
+    return response
+  };
+  const data = await getProfile(token)
+  // console.log('data get profile', data)
   if(data.meta.code === 401){
-    console.log('token expired')
-    return <RefreshToken path='/menu'/>
+    // console.log('token expired')
+    return <RefreshToken />
   }
   return (
     <div className=" flex justify-center  items-center h-screen gap-10  p-10">

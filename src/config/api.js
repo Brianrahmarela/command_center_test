@@ -2,18 +2,18 @@
 
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import { getCookie } from 'cookies-next';
+// import { getCookie } from 'cookies-next';
 import refreshToken from './refreshToken';
 
-const token = getCookie('access_token')?.value ?? '';
-console.log('token', token)
-const refresh_token = getCookie('refresh_token')?.value;
-const tokenEmail = jwt.decode(token)?.email;
+// const token = getCookie('access_token')?.value ?? '';
+// console.log('token', token)
+// const refresh_token = getCookie('refresh_token')?.value;
+// const tokenEmail = jwt.decode(token)?.email;
 
 export const GET = async (path, token, params) => {
-  console.log(path)
-  console.log(token)
-  console.log(params)
+  // console.log(path)
+  // console.log(token)
+  // console.log(params)
   const header = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${token || null}`,
@@ -40,7 +40,7 @@ export const GET = async (path, token, params) => {
   }
 };
 
-export const POST = async (path, data) => {
+export const POST = async (path, data, token) => {
   const header = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${token || null}`,

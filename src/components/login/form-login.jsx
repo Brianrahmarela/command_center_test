@@ -65,14 +65,15 @@ export default function FormLogin() {
 		}	
 
 		const response = await API.POST('/auth', values);
-		console.log('response /login', response)
-		console.log('===> exp acces_token', response.data.content[0]?.expired_access_token_string)
+		// console.log('response /login', response)
+		// console.log('===> exp acces_token', response.data.content[0]?.expired_access_token_string)
 
 		if (response.meta.code === 200) {
-			await setCookie('access_token', response.data.content[0].access_token, {
-			  maxAge: response.data.content[0].expired_access_token,
-			});
-			await setCookie('refresh_token', response.data.content[0].refresh_token);
+			await setCookie('access_token', response.data.content[0]?.access_token);
+			// await setCookie('access_token', response.data.content[0].access_token, {
+			//   maxAge: response.data.content[0].expired_access_token,
+			// });
+			await setCookie('refresh_token', response.data.content[0]?.refresh_token);
 			window.location.reload();
 		  } else {
 			showToast(response.meta.message);
