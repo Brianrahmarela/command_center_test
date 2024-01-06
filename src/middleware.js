@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 
 export async function middleware(req) {
   const token = req.cookies.get('access_token')?.value;
-  // console.log('token midleware', token)
 
   if (req.nextUrl.pathname.startsWith('/login') && !token) {
     return;
@@ -27,7 +26,7 @@ export async function middleware(req) {
   if (req.nextUrl.pathname.startsWith('/dashboard') && !token) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
-  
+
   if (req.nextUrl.pathname.startsWith('/dashboard/:path*') && !token) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
