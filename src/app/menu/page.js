@@ -12,9 +12,7 @@ const getProfile = async (token) => {
 };
 
 const Menu = async () => {
-  const cookie = cookies();
-  const token = cookie.get('access_token')?.value;
-
+  const token = cookies().get('access_token')?.value;
   const data = await getProfile(token);
 
   if (data.meta.code === 401) {

@@ -12,8 +12,8 @@ import { CalendarDateRangePicker } from '@/components/dashboard/date-range-picke
 import { Overview } from '@/components/dashboard/overview';
 import { RecentSales } from '@/components/dashboard/recent-sales';
 import { API } from '@/config';
-import RefreshToken from '@/config/refreshToken';
 import { cookies } from 'next/headers';
+import RefreshToken from '@/config/refreshToken';
 
 const getProfile = async (token) => {
   const response = await API.GET('/me', token);
@@ -21,9 +21,7 @@ const getProfile = async (token) => {
 };
 
 const Dashboard = async () => {
-  const cookie = cookies();
-  const token = cookie.get('access_token')?.value;
-
+  const token = cookies().get('access_token')?.value;
   const data = await getProfile(token);
 
   if (data.meta.code === 401) {
